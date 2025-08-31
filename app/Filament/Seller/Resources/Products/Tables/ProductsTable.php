@@ -1,45 +1,31 @@
 <?php
 
-namespace App\Filament\Resources\Sellers\Tables;
+namespace App\Filament\Seller\Resources\Products\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
-class SellersTable
+class ProductsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
+                TextColumn::make('price')
+                    ->prefix('Rs.')
                     ->sortable(),
-                TextColumn::make('contact_number')
-                    ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('pan_number')
-                    ->searchable(),
-                TextColumn::make('reg_number')
-                    ->searchable(),
-                //ImageColumn::make('image'),
-                TextColumn::make('expiry_date')
-                    ->date()
+                TextColumn::make('discount')
+                    ->suffix('%')
+                    ->numeric()
                     ->sortable(),
-                ToggleColumn::make('status'),
+                ToggleColumn::make('stock'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -53,7 +39,6 @@ class SellersTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
