@@ -12,8 +12,8 @@
             {{ $product->name }}
         </h2>
         <p>
-            {{ $product->price }}
+            Price: <span class="text-xl">Rs. {{ $product->price }}</span>
         </p>
-        <a href="" class="underline text-primary">View Details</a>
+        <a href="{{ route('product', $product->id) }}" class="underline text-primary">View Details</a>
     </div>
 </div>

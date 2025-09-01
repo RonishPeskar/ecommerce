@@ -71,4 +71,13 @@ class PageController extends Controller
         $results = Product::where('name', 'like', "%$q%")->orderBy  ('price', 'asc')->get();
         return view('frontend.compare', compact('results', 'q'));
     }
+
+    public function product($id)
+    {
+        $product = Product::find($id);
+        if (!$product) {
+            return view('frontend.404');
+        }
+        return view('frontend.product', compact('product'));
+    }
 }
