@@ -18,14 +18,22 @@
                 <form action="{{ route('compare') }}" method="get">
                     <div class="flex items-center">
                         <input type="search" name="q" id="search" placeholder="search">
-                        <button type="submit" class="bg-[#ababab] border border-[#ababab] text-white px-4 py-2">compare<i
+                        <button type="submit"
+                            class="bg-[#ababab] border border-[#ababab] text-white px-4 py-2">compare<i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>
             </div>
             <div class="flex gap-2 items-center">
-                <a href="" class="btn-primary">Sign in</a>
-                <a href="" class="btn-secondary">Sign up</a>
+                @if (!Auth::user())
+                    <a href="{{ route('login') }}" class="btn-primary">Sign in</a>
+                    <a href="{{ route('register') }}" class="btn-secondary">Sign up</a>
+                @else
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="bg-red-600 px-2 py-1 text-white rounded">Logout</button>
+                    </form>
+                @endif
             </div>
         </div>
     </nav>

@@ -80,4 +80,8 @@ class PageController extends Controller
         }
         return view('frontend.product', compact('product'));
     }
+    public function notFound()
+    {
+        return view('frontend.404');
+    }
 }
